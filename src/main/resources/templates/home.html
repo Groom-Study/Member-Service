@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>홈</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+</head>
+<body>
+<div class="page-center">
+    <div class="card home-card">
+        <span class="badge badge-user">일반 회원</span>
+        <h2>환영합니다!</h2>
+        <p class="welcome-msg"><strong th:text="${member.name}"></strong>님, 로그인에 성공했습니다.</p>
+        <a th:href="@{/logout}" class="btn-danger">로그아웃</a>
+    </div>
+</div>
+</body>
+</html>

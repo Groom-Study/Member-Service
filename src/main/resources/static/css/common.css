@@ -1,0 +1,320 @@
+/* =============================================
+   common.css - 공통 스타일
+   ============================================= */
+
+/* Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Layout: 중앙 정렬 페이지 (로그인/회원가입) */
+.page-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
+/* Card */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #222;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #4f7ef7;
+}
+
+.form-hint {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+/* Buttons */
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #4f7ef7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #3a67d4;
+}
+
+.btn-danger {
+    display: inline-block;
+    padding: 10px 28px;
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-danger:hover {
+    background: #d9363e;
+}
+
+/* Alerts */
+.alert {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.alert-error {
+    background: #fff0f0;
+    color: #d9534f;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+    background: #f0fff4;
+    color: #2d6a4f;
+    border: 1px solid #b7e4c7;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.badge-user {
+    background: #e8f0fe;
+    color: #4f7ef7;
+}
+
+.badge-admin {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Divider */
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+/* Footer link */
+.footer-link {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+}
+
+.footer-link a {
+    color: #4f7ef7;
+    text-decoration: none;
+}
+
+.footer-link a:hover {
+    text-decoration: underline;
+}
+
+/* Home page */
+.home-card {
+    text-align: center;
+    max-width: 440px;
+}
+
+.home-card h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.home-card .welcome-msg {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+/* Admin menu */
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.btn-menu {
+    display: block;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+    text-align: left;
+}
+
+.btn-menu:hover {
+    background: #e9ecef;
+}
+/* =============================================
+   Table (회원 목록)
+   ============================================= */
+
+.table-page {
+    padding: 40px 32px;
+    min-height: 100vh;
+    background: #f0f2f5;
+}
+
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.table-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+}
+
+.table-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead {
+    background: #4f7ef7;
+    color: #fff;
+}
+
+thead th {
+    padding: 14px 20px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #f7f9ff;
+}
+
+tbody td {
+    padding: 14px 20px;
+    color: #444;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.role-badge.admin {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.role-badge.user {
+    background: #e8f0fe;
+    color: #4f7ef7;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-back:hover {
+    background: #f0f0f0;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 홈</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+</head>
+<body>
+<div class="page-center">
+    <div class="card home-card">
+        <span class="badge badge-admin">관리자</span>
+        <h2>관리자 페이지</h2>
+        <p class="welcome-msg"><strong th:text="${member.name}"></strong>님, 로그인에 성공했습니다.</p>
+
+        <div class="admin-menu">
+            <a th:href="@{/admin/members}" class="btn-menu">👥 회원 목록 조회</a>
+        </div>
+
+        <a th:href="@{/logout}" class="btn-danger">로그아웃</a>
+    </div>
+</div>
+</body>
+</html>
