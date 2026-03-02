@@ -63,7 +63,7 @@ src/main/resources/
 ├── static/       # 프론트엔드 리소스 (index.html)
 └── application.properties # 서버 및 DB 설정 파일
 
-
+```
 ## 🚀 실행 및 배포 (Execution & Deployment)
 
 ### 💻 로컬 환경 (Local Development)
