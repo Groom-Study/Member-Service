@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원관리 시스템</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 40px; background-color: #f0f2f5; display: flex; justify-content: center; }
+        .container { max-width: 800px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 320px; }
+        h3 { margin-top: 0; color: #1c1e21; border-bottom: 2px solid #0084ff; padding-bottom: 10px; }
+        input { display: block; width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #0084ff; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #0073e6; }
+        .status-card { width: 100%; border-left: 8px solid #0084ff; }
+        .hidden { display: none; }
+        #logoutBtn { background: #ff4d4d; margin-top: 15px; }
+        #logoutBtn:hover { background: #cc0000; }
+        #result { color: #666; font-size: 0.9em; margin-top: 15px; text-align: center; width: 100%; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="authSection" class="container">
+        <div class="card">
+            <h3>회원가입</h3>
+            <input type="text" id="joinName" placeholder="실명 입력">
+            <input type="email" id="joinEmail" placeholder="이메일(아이디)">
+            <input type="password" id="joinPassword" placeholder="비밀번호">
+            <button onclick="handleJoin()">가입하기</button>
+        </div>
+
+        <div class="card">
+            <h3>로그인</h3>
+            <input type="email" id="loginEmail" placeholder="이메일(아이디)">
+            <input type="password" id="loginPassword" placeholder="비밀번호">
+            <button onclick="handleLogin()">로그인</button>
+        </div>
+    </div>
+
+    <div id="userSection" class="card status-card hidden">
+        <h3>사용자 정보</h3>
+        <p id="welcomeMsg" style="font-size: 1.3em; font-weight: bold; color: #1c1e21;"></p>
+        <p style="color: #28a745; font-weight: bold;">● 인증됨: 서비스 이용 가능</p>
+        <button id="logoutBtn" onclick="handleLogout()">로그아웃</button>
+    </div>
+
+    <div id="result">서버 상태: 대기 중...</div>
+</div>
+
+<script>
+    // 기존 localhost를 지우고 EC2 IP로 교체하세요.
+    const BASE_URL = 'http://43.203.227.11:8080';
+
+    window.onload = function() {
+        checkLoginStatus();
+    };
+
+    // 로그인 상태에 따라 화면 전환
+    function checkLoginStatus() {
+        const token = localStorage.getItem('token');
+        const userName = localStorage.getItem('userName');
+
+        if (token && userName) {
+            document.getElementById('authSection').classList.add('hidden');
+            document.getElementById('userSection').classList.remove('hidden');
+            document.getElementById('welcomeMsg').innerText = `${userName}님, 환영합니다!`;
+            document.getElementById('result').innerText = "상태: 로그인 성공";
+        } else {
+            document.getElementById('authSection').classList.remove('hidden');
+            document.getElementById('userSection').classList.add('hidden');
+        }
+    }
+
+    // 회원가입 로직
+    async function handleJoin() {
+        const name = document.getElementById('joinName').value;
+        const email = document.getElementById('joinEmail').value;
+        const password = document.getElementById('joinPassword').value;
+
+        if(!name || !email || !password) return alert("모든 정보를 입력해주세요.");
+
+        try {
+            const response = await fetch(`${BASE_URL}/api/members/join`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
+            const text = await response.text();
+            alert(text);
+        } catch (e) { alert("서버 연결 실패!"); }
+    }
+
+    // 로그인 로직
+    async function handleLogin() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+            const response = await fetch(`${BASE_URL}/api/members/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('userName', data.name);
+
+                checkLoginStatus();
+            } else {
+                const errorText = await response.text();
+                alert("로그인 실패: " + errorText);
+            }
+        } catch (e) {
+            console.error(e);
+            alert("로그인 통신 중 에러 발생!");
+        }
+    }
+
+    // 로그아웃 로직
+    function handleLogout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        alert("로그아웃 되었습니다.");
+        location.reload();
+    }
+</script>
+</body>
+</html>
